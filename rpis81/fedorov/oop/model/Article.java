@@ -1,6 +1,6 @@
 package rpis81.fedorov.oop.model;
 
-public class Article {
+public class Article implements Work{
     String name;
     Author[] authors;
 

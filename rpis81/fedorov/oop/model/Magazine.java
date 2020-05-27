@@ -1,9 +1,8 @@
 package rpis81.fedorov.oop.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class Magazine {
+public class Magazine implements WorkCompilation{
     Article[] articles;
 
     public Magazine(){
@@ -14,17 +13,17 @@ public class Magazine {
         articles=new Article[capacity];
     }
 
-    public Magazine(Article[] articles){
-        this.articles=articles.clone();
+    public Magazine(Work[] articles){
+        this.articles= (Article[]) articles.clone();
     }
 
-    public boolean add(Article article)
+    public boolean add(Work article)
     {
         for(int i=0;i<articles.length;i++)
         {
             if(articles[i]==null)
             {
-                articles[i]=article;
+                articles[i]= (Article) article;
                 return true;
             }
         }
@@ -35,21 +34,21 @@ public class Magazine {
 
     protected void doubleCapacity()
     {
-        Article[] articles1=new Article[articles.length*2];
+        Work[] articles1=new Work[articles.length*2];
         for(int i=0;i<articles.length;i++)
         {
             articles1[i]=articles[i];
         }
-        articles=articles1;
+        articles= (Article[]) articles1;
     }
 
-    public boolean add(Article article, int index)
+    public boolean add(Work article, int index)
     {
         if(index<articles.length&&articles[articles.length-1]==null) {
             for (int i = articles.length - 2; i > index; i--) {
                 articles[i+1] = articles[i];
             }
-            articles[index]=article;
+            articles[index]= (Article) article;
             return true;
         }
 
@@ -59,19 +58,25 @@ public class Magazine {
         return true;
     }
 
-    public Article getArticle(int index) {
+    public Work getWork(int index) {
         return articles[index];
     }
 
-    public Article setArticle(Article article,int index) {
-        Article a=articles[index];
-        articles[index] = article;
+    @Override
+    public Work setWork(Work work) {
+        return null;
+    }
+
+
+    public Work setWork(Work article,int index) {
+        Work a=articles[index];
+        articles[index] = (Article) article;
         return a;
     }
 
-    public Article remove(int index)
+    public Work remove(int index)
     {
-        Article a=articles[index];
+        Work a=articles[index];
 
         for (int i = index; i < articles.length; i++) {
             articles[i+1] = articles[i];
@@ -104,7 +109,7 @@ public class Magazine {
         return quantity;
     }
 
-    public Article[] getArticles() {
+    public Article[] getWorks() {
         ArrayList<Article> arrayList=new ArrayList<>();
         for(int i=0;i<articles.length;i++)
         {
@@ -113,13 +118,18 @@ public class Magazine {
         return (Article[]) arrayList.toArray();
     }
 
-    public Article[] getArticles(Author author) {
+    public Article[] getWorks(Author author) {
         ArrayList<Article> arrayList=new ArrayList<>();
         for(int i=0;i<articles.length;i++)
         {
             if(articles[i]!=null&& articles[i].isAuthor(author))arrayList.add(articles[i]);
         }
         return (Article[]) arrayList.toArray();
+    }
+
+    @Override
+    public Work[] getWorks(String name) {
+        return new Work[0];
     }
 
 }
