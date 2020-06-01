@@ -1,12 +1,20 @@
 package rpis81.fedorov.oop.model;
 
-public class Article extends AbstractWork implements Work{
+public abstract class AbstractWork implements Work, Printing {
     String name;
     Author[] authors;
 
-    public Article(String name, Author[] authors)
+    protected AbstractWork(String name, Author[] authors)
     {
-        super(name, authors);
+        this.name=name;
+        this.authors=authors.clone();
+    }
+
+    protected AbstractWork(String name, Author[] authors,Genre genre)
+    {
+        this.name=name;
+        this.authors=authors.clone();
+        this.genre=genre;
     }
 
     public String getName()
@@ -38,8 +46,16 @@ public class Article extends AbstractWork implements Work{
     {
         return name.equals("")&&authors.length==0;
     }
-    @Override
-    public final void setGenre(Genre genre) {
 
+    Genre genre;
+
+    @Override
+    public Genre getGenre() {
+        return genre;
+    }
+
+    @Override
+    public void setGenre(Genre genre) {
+        this.genre=genre;
     }
 }

@@ -136,4 +136,22 @@ public class Catalogue {
         }
         return (Printing[]) printings.toArray();
     }
+
+    public int getQuantity()
+    {
+        return quantity;
+    }
+
+    public Printing[] getAll(Genre genre)
+    {
+        Node node=head;
+        ArrayList<Printing> printings=new ArrayList<>();
+        while (node!=tail)
+        {
+            if(node.current.getGenre().equals(genre))
+                printings.add(node.current);
+            node=node.next;
+        }
+        return (Printing[]) printings.toArray();
+    }
 }

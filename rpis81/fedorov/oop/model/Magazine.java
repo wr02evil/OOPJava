@@ -2,19 +2,22 @@ package rpis81.fedorov.oop.model;
 
 import java.util.ArrayList;
 
-public class Magazine implements WorkCompilation{
+public class Magazine implements WorkCompilation,Printing{
     Article[] articles;
 
     public Magazine(){
         articles=new Article[16];
+        genre=Genre.OTHER;
     }
 
-    public Magazine(int capacity){
+    public Magazine(int capacity,Genre genre){
         articles=new Article[capacity];
+        this.genre=genre;
     }
 
-    public Magazine(Work[] articles){
+    public Magazine(Work[] articles,Genre genre){
         this.articles= (Article[]) articles.clone();
+        this.genre=genre;
     }
 
     public boolean add(Work article)
@@ -132,4 +135,26 @@ public class Magazine implements WorkCompilation{
         return new Work[0];
     }
 
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public void setName(String name) {
+
+    }
+
+    Genre genre;
+
+    @Override
+    public Genre getGenre() {
+        return genre;
+    }
+
+    @Override
+    public void setGenre(Genre genre) {
+        this.genre=genre;
+    }
 }
