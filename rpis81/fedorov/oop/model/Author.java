@@ -31,10 +31,23 @@ public class Author {
         return secondName;
     }
 
+
+
+
+    @Override
+    public String toString() {
+        return String.format("%s %s %s",surname,name,secondName);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode()^surname.hashCode()^secondName.hashCode();
+    }
     @Override
     public boolean equals(Object obj) {
-        Author author=(Author)obj;
-        return name.equals(author.name)&&secondName.equals(author.secondName)&&
-                surname.equals(author.surname);
+        return obj.getClass().equals(Author.class) &&
+                ((Author) obj).secondName.equals(secondName) &&
+                ((Author) obj).surname.equals(surname) &&
+                ((Author) obj).name.equals(name);
     }
 }

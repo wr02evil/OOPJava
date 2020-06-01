@@ -154,4 +154,11 @@ public class Catalogue {
         }
         return (Printing[]) printings.toArray();
     }
+
+    @Override
+    public String toString() {
+        return String.format("Catalogue has %d works",quantity);
+    }
+
+
 }

@@ -42,4 +42,23 @@ public class Article extends AbstractWork implements Work{
     public final void setGenre(Genre genre) {
 
     }
+
+    @Override
+    public String toString() {
+        String s= String.format("Article: %s, authors:\n",name);
+        for (Author a:authors) {
+            s=String.format("%s%s\n",s,a.toString());
+        }
+        return s;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode()*53;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

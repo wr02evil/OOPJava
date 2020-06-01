@@ -157,4 +157,27 @@ public class Magazine implements WorkCompilation,Printing{
     public void setGenre(Genre genre) {
         this.genre=genre;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder s= new StringBuilder();
+        s.append("Magazine '").append(getName()).append("', ").append(genre);
+        s.append("\nWorks:\n");
+        for (Article a:articles) {
+            s.append(a.toString()).append('\n');
+        }
+        return s.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return 31*getName().hashCode()*genre.hashCode()*articles.length;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj.getClass().equals(Magazine.class)&&
+                ((Magazine)obj).getName().equals(getName())&&
+                ((Magazine)obj).articles.length==articles.length;
+    }
 }

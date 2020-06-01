@@ -38,5 +38,16 @@ public class Test {
         System.out.println(book.getAuthors());
         System.out.println(book.getGenre());
     }
+
+    public static void lab4test(){
+        Author author=new Author("Иван","Иванов","Иванович");
+        Author[] authors={author,new Author()};
+        Article article=new Article("Как кодить?",authors);
+        Article[] articles={article, new Article("",authors)};
+        Magazine magazine=new Magazine(articles,Genre.HORROR);
+        magazine.getWork(0);
+        magazine.removeAll("Как кодить");
+        System.out.println(magazine.toString());
+    }
 }
 

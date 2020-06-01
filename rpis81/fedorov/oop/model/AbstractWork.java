@@ -58,4 +58,33 @@ public abstract class AbstractWork implements Work, Printing {
     public void setGenre(Genre genre) {
         this.genre=genre;
     }
+
+    @Override
+    public String toString() {
+        String s= String.format("%s, authors:\n",name);
+        for (Author a:authors) {
+            s=String.format("%s%s\n",s,a.toString());
+        }
+        return s;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash=name.hashCode();
+        for (Author a:authors) {
+            hash^=a.hashCode();
+        }
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!obj.getClass().equals(AbstractWork.class))
+            return false;
+        AbstractWork work= (AbstractWork) obj;
+        if(work.getAuthors().length!=authors.length)return false;
+        for (Author a:authors)
+            if(!work.isAuthor(a))return false;
+            return true;
+    }
 }
